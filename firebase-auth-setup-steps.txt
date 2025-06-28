@@ -1,0 +1,54 @@
+# Firebase Authentication Integration Steps (React Native Expo)
+
+## User Prompts (Chronological)
+
+1. this page has simple login right? just read
+2. // app.js ... i want u to implement this here instead of that, rest is same
+3. check once cause it was working
+4. yes pls
+5. i have added the google-service.json file now implement firebase authentication, Web API Key is ...
+6. fix verything on login pls, edit and change what ever it takes
+7. yes
+8. also use google-services.json too
+9. yes
+10. yes
+11. yes make changes\
+12. as you can see there is a signin with google option as well, implement it
+13. explain what happneded this all chat to me in a file, step by step
+14. also inclue the prompts i give in this file
+
+## 1. Initial State
+- The login screen used a dummy check for email and password.
+- No real authentication was implemented.
+
+## 2. Firebase Auth Setup Attempt
+- Tried to use `firebase/auth` from the Firebase JS SDK for authentication.
+- Encountered the error: `Unable to resolve "firebase/auth"` in Expo Go.
+- This is because Expo Go does not support native Firebase modules out of the box.
+
+## 3. Firebase SDK Installation
+- Installed the `firebase` npm package to try to resolve the import error.
+- However, Expo Go still does not support `firebase/auth` as it requires native code.
+
+## 4. google-services.json
+- Added `google-services.json` to the project for Android native Firebase support.
+- Realized that Expo managed workflow does not use this file unless building a standalone app with EAS Build.
+
+## 5. Switched to Firebase REST API
+- Replaced the `firebase/auth` logic with a call to the Firebase REST API for email/password login.
+- This works in Expo Go and does not require native modules.
+
+## 6. Google Sign-In Implementation
+- Installed `expo-auth-session` to support Google Sign-In in Expo Go.
+- Used the Google OAuth client ID from `google-services.json`.
+- Implemented Google Sign-In using `expo-auth-session/providers/google`.
+- The Google button now launches the Google login flow and calls `onLoginSuccess` on success.
+
+## 7. Final State
+- Email/password login works using the Firebase REST API.
+- Google Sign-In works using Expo Auth Session.
+- The app is compatible with Expo Go and can be built as a standalone app for full native support if needed.
+
+---
+
+**If you want to use more advanced Firebase features (push notifications, etc.), you will need to build a custom dev client or eject to bare React Native.**
